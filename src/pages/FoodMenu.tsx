@@ -87,9 +87,9 @@ const FoodMenu = () => {
   return (
     <div className="px-4 sm:px-8 py-8 lg:px-16 bg-linear-to-br from-black via-orange-900 to-red-700 min-h-screen text-white overflow-hidden">
       <div className="max-w-6xl mx-auto bg-black/85 border border-orange-300/70 rounded-2xl p-6 shadow-2xl">        <header className="mb-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-orange-300 mb-2">Food Gallery</h1>
-          <p className="text-sm md:text-base text-gray-200">Explore international tastes, filter by category, and discover best sellers.</p>
-        </header>
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-orange-300 mb-2">Food Gallery</h1>
+        <p className="text-sm md:text-base text-gray-200">Explore international tastes, filter by category, and discover best sellers.</p>
+      </header>
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
           <div className="flex items-center gap-2 flex-wrap">
@@ -143,6 +143,12 @@ const FoodMenu = () => {
               <div className="text-sm text-gray-300">Total:</div>
               <div className="text-lg font-bold text-orange-200">${cartTotal.toFixed(2)}</div>
             </div>
+            <button
+              onClick={() => navigate(`/currency?amount=${cartTotal.toFixed(2)}&from=USD&to=EUR`)}
+              className="mt-3 w-full rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-2"
+            >
+              Convert Cart Total
+            </button>
           </aside>
         )}
 
@@ -150,15 +156,15 @@ const FoodMenu = () => {
           {filtered.length ? (
             filtered.map((item) => (
               <article key={item.id} className="bg-white/10 border border-orange-200/40 rounded-2xl p-5 shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1">
-              <div className="relative overflow-hidden rounded-xl mb-4 h-40 bg-black/20">
-                <img
-                  src={item.imageUrl || `https://source.unsplash.com/400x300/?${encodeURIComponent(item.title)}`}
-                  alt={item.title}
-                  className="object-cover w-full h-full"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
-                <span className="absolute bottom-2 left-2 text-xl">{item.image}</span>
-              </div>
+                <div className="relative overflow-hidden rounded-xl mb-4 h-40 bg-black/20">
+                  <img
+                    src={item.imageUrl || `https://source.unsplash.com/400x300/?${encodeURIComponent(item.title)}`}
+                    alt={item.title}
+                    className="object-cover w-full h-full"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
+                  <span className="absolute bottom-2 left-2 text-xl">{item.image}</span>
+                </div>
                 <h3 className="text-2xl font-bold mb-1 text-orange-100">{item.title}</h3>
                 <p className="text-sm text-gray-200 mb-3">{item.desc}</p>
                 <div className="flex items-center justify-between text-sm text-gray-100 mb-3">

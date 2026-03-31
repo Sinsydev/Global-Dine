@@ -20,14 +20,8 @@ const CurrencyConverter = () => {
   const [conversionHistory, setConversionHistory] = useState<Array<{from:string;to:string;amount:number;converted:number;rate:number;time:string;}>>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [showConverted, setShowConverted] = useState(false);
-  const [conversionActive, setConversionActive] = useState(true);
 
   useEffect(() => {
-    if (!conversionActive) {
-      setLoading(false);
-      return;
-    }
 
     const fetchRates = async () => {
       setLoading(true);
@@ -48,7 +42,7 @@ const CurrencyConverter = () => {
         const data = await res.json();
 
         if (provider === "exchangerate") {
-          setRates(data.rates);
+          setRates({ USD: 1, ...data.rates });
         } else {
           setRates({ ...data.rates, USD: 1 });
         }
@@ -60,22 +54,24 @@ const CurrencyConverter = () => {
     };
 
     fetchRates();
-  }, [provider, conversionActive]);
-
-  const rate = useMemo(() => {
-    if (!rates || !rates[fromCurrency] || !rates[toCurrency]) return 0;
-    return (rates[toCurrency] / rates[fromCurrency]);
-  }, [rates, fromCurrency, toCurrency]);
-
-  const converted = amount * (rate || 0);
+  }, [provider,]);
 
   const currencyList = useMemo(() => {
     const keys = Object.keys(rates || {}).sort();
     return keys.length > 0 ? keys : defaultCurrencies;
   }, [rates]);
 
+  const normalizedFrom = currencyList.includes(fromCurrency) ? fromCurrency : "USD";
+  const normalizedTo = currencyList.includes(toCurrency) ? toCurrency : "EUR";
+
+  const rate = useMemo(() => {
+    if (!rates || !rates[normalizedFrom] || !rates[normalizedTo]) return 0;
+    return (rates[normalizedTo] / rates[normalizedFrom]);
+  }, [rates, normalizedFrom, normalizedTo]);
+
+  const converted = Number.isFinite(amount) ? amount * rate : 0;
+
   useEffect(() => {
-    if (!conversionActive || !showConverted) return;
     if (rate > 0) {
       setConversionHistory((prev) => {
         const entry = {
@@ -89,7 +85,7 @@ const CurrencyConverter = () => {
         return [entry, ...prev].slice(0, 8);
       });
     }
-  }, [rate, amount, fromCurrency, toCurrency, converted, conversionActive, showConverted]);
+  }, [rate, amount, fromCurrency, toCurrency, converted]);
 
   return (
     <section className="min-h-screen bg-linear-to-br from-black via-orange-900 to-red-700 text-white p-6 lg:p-12 overflow-visible">
@@ -127,39 +123,18 @@ const CurrencyConverter = () => {
               </select>
             </div>
 
-            <div className="mb-4 flex flex-wrap gap-3 items-center">
-              <button
-                onClick={() => setShowConverted(true)}
-                disabled={!conversionActive}
-                className="rounded-xl bg-orange-500 hover:bg-orange-400 text-black font-bold px-5 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Show converted amount
-              </button>
-              <button
-                onClick={() => setShowConverted(false)}
-                className="rounded-xl bg-gray-700 hover:bg-gray-600 text-white px-4 py-2"
-              >
-                Reset
-              </button>
-              <button
-                onClick={() => setConversionActive((prev) => !prev)}
-                className="rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2"
-              >
-                {conversionActive ? "Pause converter" : "Resume converter"}
-              </button>
+            <div className="mb-4">
+              <p className="text-sm text-gray-200">Conversion result updates automatically when values change.</p>
             </div>
 
-            {!conversionActive && (
-              <div className="mb-4 text-sm text-yellow-300">Conversion is paused. Click Resume converter to restart live rates.</div>
-            )}
-
             <div className="p-5 rounded-xl bg-black border-2 border-orange-400 shadow-inner">
-              <p className="text-sm text-orange-100">1 {fromCurrency} = {rate.toFixed(6)} {toCurrency}</p>
-              {showConverted ? (
-                <p className="text-3xl font-bold text-orange-200 mt-2">{converted.toFixed(2)} {toCurrency}</p>
+              <p className="text-sm text-orange-100">1 {normalizedFrom} = {rate > 0 ? rate.toFixed(6) : "—"} {normalizedTo}</p>
+              {rate > 0 ? (
+                <p className="text-3xl font-bold text-orange-200 mt-2">{converted.toFixed(2)} {normalizedTo}</p>
               ) : (
-                <p className="text-lg font-medium text-gray-300 mt-2">Click "Show converted amount" to preview total.</p>
+                <p className="text-lg font-medium text-gray-300 mt-2">Rate unavailable yet or the selected pair is not supported. Please wait a moment.</p>
               )}
+              <p className="text-xs text-gray-400 mt-2">Conversion history shows last {conversionHistory.length} results.</p>
             </div>
 
             <div className="mt-6 rounded-xl border border-orange-300/60 bg-black/70 p-4">
