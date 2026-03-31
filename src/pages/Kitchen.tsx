@@ -52,9 +52,8 @@ const Kitchen = () => {
   };
 
   return (
-    <div className="min-h-screen p-6 lg:p-10 bg-linear-to-br from-black via-orange-900 to-red-700 text-white">
-      <div className="max-w-7xl mx-auto">
-        <header className="mb-8">
+    <div className="min-h-screen p-6 lg:p-10 bg-linear-to-br from-black via-orange-900 to-red-700 text-white overflow-hidden">
+      <div className="max-w-7xl mx-auto bg-black/85 border border-orange-300/70 rounded-2xl p-6 shadow-2xl">        <header className="mb-8">
           <h1 className="text-4xl md:text-5xl font-black text-orange-200">Kitchen Dashboard</h1>
           <p className="text-gray-200 mt-2">Manage incoming orders and keep the kitchen running smoothly.</p>
         </header>

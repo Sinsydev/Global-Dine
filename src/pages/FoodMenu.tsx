@@ -85,9 +85,8 @@ const FoodMenu = () => {
   }, [activeCategory, search, itemsWithImages])
 
   return (
-    <div className="px-4 sm:px-8 py-8 lg:px-16 bg-linear-to-br from-black via-orange-900 to-red-700 min-h-screen text-white">
-      <div className="max-w-6xl mx-auto">
-        <header className="mb-8 text-center">
+    <div className="px-4 sm:px-8 py-8 lg:px-16 bg-linear-to-br from-black via-orange-900 to-red-700 min-h-screen text-white overflow-hidden">
+      <div className="max-w-6xl mx-auto bg-black/85 border border-orange-300/70 rounded-2xl p-6 shadow-2xl">        <header className="mb-8 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-orange-300 mb-2">Food Gallery</h1>
           <p className="text-sm md:text-base text-gray-200">Explore international tastes, filter by category, and discover best sellers.</p>
         </header>
