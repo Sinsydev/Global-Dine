@@ -179,6 +179,12 @@ const FoodMenu = () => {
                   >
                     View details
                   </button>
+                  <button
+                    onClick={() => navigate(`/currency?amount=${item.price.toFixed(2)}&from=USD&to=EUR`)}
+                    className="flex-1 py-2 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-400 transition"
+                  >
+                    Convert price
+                  </button>
                 </div>
               </article>
             ))
