@@ -1,4 +1,4 @@
- import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const About = () => {
   return (
@@ -16,11 +16,11 @@ const About = () => {
             About Global Dine
           </h1>
           <p className="text-lg text-orange-100/90 max-w-2xl mx-auto">
-            A modern solution for restaurants to go global — built with performance, usability, and real-world impact in mind.
+            Making restaurant menus easier to understand worldwide with real-time currency conversion and a seamless dining experience.
           </p>
         </motion.div>
 
-        {/* GLASS CARD */}
+        {/* WHAT IT IS */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,8 +31,8 @@ const About = () => {
             What is Global Dine?
           </h2>
           <p className="text-gray-200 leading-relaxed">
-            Global Dine helps restaurants reach international customers by converting menu prices into local currencies in real time.
-            It removes confusion, builds trust, and creates a better dining experience for users worldwide.
+            Global Dine is a smart platform that allows customers to view restaurant menus in their local currency.
+            Whether you're traveling or ordering from abroad, you can instantly understand prices without confusion.
           </p>
         </motion.div>
 
@@ -40,20 +40,20 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-6 mb-10">
           {[
             {
-              title: "🌍 Global Reach",
-              text: "Expand your restaurant to a worldwide audience effortlessly.",
+              title: "🌍 Easy for Travelers",
+              text: "View menu prices in your own currency wherever you are in the world.",
             },
             {
-              title: "⚡ Real-Time Data",
-              text: "Live exchange rates ensure accuracy and trust.",
+              title: "⚡ Real-Time Conversion",
+              text: "Live exchange rates ensure accurate and up-to-date pricing.",
             },
             {
-              title: "💼 Business Ready",
-              text: "Designed to help businesses scale and attract global customers.",
+              title: "🍽️ Restaurant Friendly",
+              text: "Restaurants can reach international customers more easily.",
             },
             {
-              title: "📱 Modern UX",
-              text: "Clean, fast, and responsive across all devices.",
+              title: "📱 Smooth Experience",
+              text: "Simple, fast, and responsive design across all devices.",
             },
           ].map((item, i) => (
             <motion.div
@@ -71,36 +71,35 @@ const About = () => {
           ))}
         </div>
 
-        {/* DEVELOPER SECTION */}
+        {/* TRUST / SUPPORT */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="backdrop-blur-lg bg-white/5 border border-orange-400/40 rounded-2xl p-8 mb-10"
         >
           <h2 className="text-2xl font-bold text-orange-200 mb-4">
-            About the Developer
+            Why Choose Global Dine?
           </h2>
           <p className="text-gray-200 leading-relaxed">
-            I specialize in building modern, responsive web applications that solve real-world problems.
-            My focus is on clean UI, performance, and scalable solutions that businesses can rely on.
+            We focus on simplicity, accuracy, and user experience. Whether you're a customer exploring menus or a restaurant aiming to serve a global audience, Global Dine makes the process smooth and reliable.
           </p>
         </motion.div>
 
-        {/* CTA */}
+        {/* CTA (PRODUCT STYLE) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           className="text-center backdrop-blur-lg bg-orange-500/10 border border-orange-400 rounded-2xl p-10"
         >
           <h2 className="text-2xl font-bold text-orange-200 mb-3">
-            Let’s Build Something Great
+            Explore Menus Globally
           </h2>
           <p className="text-gray-200 mb-6">
-            Looking for a modern website or web app? I can help you bring your ideas to life.
+            Start converting menu prices instantly and enjoy a better dining experience anywhere in the world.
           </p>
 
           <button className="bg-orange-500 hover:bg-orange-600 transition px-8 py-3 rounded-xl font-bold text-white shadow-lg hover:scale-105">
-            Contact Me
+            Start Converting
           </button>
         </motion.div>
 
