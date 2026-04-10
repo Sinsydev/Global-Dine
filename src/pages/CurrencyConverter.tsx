@@ -169,7 +169,7 @@ const CurrencyConverter = () => {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-black via-orange-900 to-red-700 text-white p-6">
+    <section className="min-h-screen linear-gradient-to-br from-black via-orange-900 to-red-700 text-white p-6">
       <div className="max-w-3xl mx-auto bg-black/95 border border-orange-400 rounded-2xl p-8">
 
         <h1 className="text-3xl font-bold mb-4">Currency Converter</h1>
