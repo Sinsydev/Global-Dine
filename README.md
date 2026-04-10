@@ -11,16 +11,19 @@ It solves a real-world problem:
 
 With Global Dine, users can instantly view prices in their preferred currency using live exchange rates.
 
-✨ Features
-🌍 Real-Time Currency Conversion
-🍽️ Restaurant-Focused UI
-⚡ Fast and responsive React interface
-💱 Supports multiple global currencies
-📊 Live exchange rate API integration
-🧾 Conversion history tracking
-🎨 Modern glassmorphism UI design
-📱 Fully responsive (mobile + desktop)
-🔁 Multi-page routing (Home, About, Contact)
+✨ Features.
+
+🌍 Real-Time Currency Conversion.
+🍽️ Restaurant-Focused UI.
+⚡ Fast and responsive React interface.
+💱 Supports multiple global currencies.
+📊 Live exchange rate API integration.
+🧾 Conversion history tracking.
+🎨 Modern glassmorphism UI design.
+📱 Fully responsive (mobile + desktop).
+🔁 Multi-page routing (Home, About, Contact).
+
+
 🧠 Problem It Solves
 
 Restaurants lose international customers because:
@@ -34,7 +37,9 @@ Global Dine fixes this by:
 Converting menu prices instantly
 Improving customer trust
 Making restaurants globally accessible
+
 🛠️ Tech Stack
+
 React (TypeScript)
 Vite
 Tailwind CSS
